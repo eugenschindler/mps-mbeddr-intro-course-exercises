@@ -1,443 +1,368 @@
 void assert(boolean predicate) { 
-   
 }
  
-enum appState { 
+enum RCState { 
   uninitialized; 
   initializing; 
-  prepare_standby; 
+  preparing_standby; 
   standby; 
   connected; 
-  unconnected; 
+  disconnected; 
   connecting; 
-  resetting; 
-  prepare_special_mode; 
-  special_mode; 
-  updating; 
+  switching_to_ec_mode; 
+  ec_mode; 
 } 
  
-enum hostState { 
+enum DroneState { 
   connected; 
   unconnected; 
 } 
  
-enum controller { 
-  data_manager; 
-  sensor_control; 
-  point_control; 
-  gesture_control; 
-  power_control; 
-  input_control; 
-  orientation_manager; 
-  profile_manager; 
-  host_interface; 
-  user_interface_control; 
-  activity_manager; 
-  special_mode_manager; 
+enum Controller { 
+  sensors; 
+  pointer; 
+  power; 
+  input; 
+  activity; 
+  orientation; 
+  drone_interface; 
+  ec_mode; 
 } 
  
-enum device { 
+enum Device { 
   keyboard; 
   accelerometer; 
 } 
  
-enum messageEvent { 
+enum MessageEvent { 
   key_stuck; 
   switch_standby; 
 } 
  
-enum inactivityEvent { 
+enum EventWhileInactive { 
   inactivity; 
   unconnected; 
 } 
  
  
-struct inputData { 
-  hostState hostState; 
-  inactivityEvent* inactivityEvent; 
-  boolean isSpecialStateRequested; 
-  boolean isResetRequested; 
-  boolean isUpdateRequested; 
-  boolean isConnectRequested; 
-  boolean isSwitchRecorded; 
-  message* message; 
-}; 
- 
- 
-struct outputData { 
-   
-}; 
- 
- 
-struct message { 
+struct Message { 
   uint8 nrOfKeys; 
-  messageEvent event; 
+  MessageEvent event; 
+  uint8 longestKeyPressLength; 
 }; 
  
-void activateController(controller controller) { 
+ 
+struct InputData { 
+  DroneState droneState; 
+  EventWhileInactive* inactiveEvent; 
+  boolean ecStateIssued; 
+  boolean connectIssued; 
+  boolean switchRegistered; 
+  Message* message; 
+  int16 ledColor; 
+}; 
+ 
+ 
+struct OutputData { 
+  int16 ledColor; 
+}; 
+ 
+void activateController(Controller controller) { 
   // do some platform-specific stuff 
 }
  
-void deactivateController(controller controller) { 
+void deactivateController(Controller controller) { 
   // do some platform-specific stuff 
 }
  
-void startDevice(device device) { 
-   
+void startDevice(Device device) { 
+  // do some platform-specific stuff 
 }
  
-void stopDevice(device device) { 
-   
+void stopDevice(Device device) { 
+  // do some platform-specific stuff 
 }
  
-appState state = uninitialized; 
+RCState state = uninitialized; 
  
- 
-void processInitializingState(inputData* inputData, outputData* outputData) { 
+void handleStateInitializing(InputData* inputData, OutputData* outputData) { 
   // Keys or accelerometer may trigger a wake-up from standby. For this to work, the  
- keyboard/accelerometer interface must stop to bring the hardware in the correct 
- state. For this to be allowed, the keyboard interface must first be started. 
+ keyboard
+/accelerometer interface must stop to bring the hardware in the correct 
+ state. For this to be allowed, the keyboard interface must first be started.
+ 
   startDevice(keyboard); 
   stopDevice(keyboard); 
   startDevice(accelerometer); 
   stopDevice(accelerometer); 
    
-  if (inputData->hostState == connected) { 
-    enterConnectedStateFromInitializingState(); 
+  if (inputData->droneState == connected) { 
+    enterFromConnected2InitializingState(); 
   } else { 
     enterConnectingState(outputData); 
   } if 
    
 }
  
-void processPrepareStandbyState(inputData* inputData, outputData* outputData) { 
+void handleStatePreparingStandby(InputData* inputData, OutputData* outputData) { 
   boolean inactivity = false; 
-  if (inputData->inactivityEvent != null) { 
-    inactivity = (*inputData->inactivityEvent == inactivity); 
+  if (inputData->inactiveEvent != null) { 
+    inactivity = (*inputData->inactiveEvent == inactivity); 
   } if 
   if (inactivity) { 
-    enterStandbyState(outputData); 
+    enterStateStandby(outputData); 
   } if 
 }
  
-void processStandbyState(inputData* inputData) { 
-  // some platform-specific stuff 
-  if (inputData->hostState == connected) { 
+void handleStateStandby(InputData* inputData) { 
+  // do some platform-specific stuff 
+  if (inputData->droneState == connected) { 
     state = connected; 
-    activateController(data_manager); 
-    activateController(sensor_control); 
-    activateController(point_control); 
-    activateController(gesture_control); 
-    activateController(power_control); 
-    activateController(input_control); 
-    activateController(orientation_manager); 
-    activateController(profile_manager); 
-    activateController(host_interface); 
-    activateController(user_interface_control); 
-    activateController(activity_manager); 
-    deactivateController(special_mode_manager); 
+    activateController(sensors); 
+    activateController(pointer); 
+    activateController(power); 
+    activateController(input); 
+    activateController(orientation); 
+    activateController(drone_interface); 
+    deactivateController(ec_mode); 
   } else { 
-    state = unconnected; 
-    activateController(data_manager); 
-    activateController(sensor_control); 
-    deactivateController(point_control); 
-    deactivateController(gesture_control); 
-    activateController(power_control); 
-    activateController(input_control); 
-    activateController(orientation_manager); 
-    activateController(profile_manager); 
-    deactivateController(host_interface); 
-    activateController(user_interface_control); 
-    activateController(activity_manager); 
-    deactivateController(special_mode_manager); 
+    state = disconnected; 
+    activateController(sensors); 
+    deactivateController(pointer); 
+    activateController(power); 
+    activateController(input); 
+    activateController(orientation); 
+    deactivateController(drone_interface); 
+    deactivateController(ec_mode); 
   } if 
 }
  
-void processConnectedState(inputData* inputData, outputData* outputData) { 
-  // some platform-specific stuff 
-  if (inputData->isSpecialStateRequested) { 
-    enterPrepareSpecialModeState(); 
-  } else if (inputData->isResetRequested) { 
-    enterResettingState(outputData); 
-  } else if (inputData->isUpdateRequested) { 
-    enterUpdatingState(outputData); 
-  } else if (inputData->isConnectRequested) { 
+void handleStateConnected(InputData* inputData, OutputData* outputData) { 
+  // do some platform-specific stuff 
+  if (inputData->ecStateIssued) { 
+    enterStateSwitchingtoEcMode(); 
+  } else if (inputData->connectIssued) { 
     enterConnectingState(outputData); 
-  } else if (inputData->hostState == unconnected) { 
-    enterPrepareStandbyStateFromConnectedState(outputData); 
-  } else if (connected2StandbyConditionsMet(inputData)) { 
-    enterPrepareStandbyStateFromConnectedState(outputData); 
+  } else if (inputData->droneState == unconnected) { 
+    enterFromPreparingStandby2ConnectedState(outputData); 
+  } else if (conditionsTransitionFromConnected2StandbyStateSatisfied(inputData)) { 
+    enterFromPreparingStandby2ConnectedState(outputData); 
   } 
 }
  
-void processUnconnectedState(inputData* inputData, outputData* outputData) { 
-  // some platform-specific stuff 
-  if (inputData->isSpecialStateRequested) { 
-    enterPrepareSpecialModeState(); 
-  } else if (inputData->isResetRequested) { 
-    enterResettingState(outputData); 
-  } else if (inputData->isConnectRequested) { 
+void handleStateDisconnected(InputData* inputData, OutputData* outputData) { 
+  // do some platform-specific stuff 
+  if (inputData->ecStateIssued) { 
+    enterStateSwitchingtoEcMode(); 
+  } else if (inputData->connectIssued) { 
     enterConnectingState(outputData); 
   } else if (inputData->message != null) { 
     if (inputData->message->nrOfKeys > 0) { 
       enterConnectingState(outputData); 
     } if 
-  } else if (connected2StandbyConditionsMet(inputData)) { 
-    enterPrepareStandbyStateFromUnconnectedState(outputData); 
+  } else if (conditionsTransitionFromConnected2StandbyStateSatisfied(inputData)) { 
+    enterFromPreparingStandby2UnconnectedState(outputData); 
   } 
 }
  
-void processConnectingState(inputData* inputData, outputData* outputData) { 
+void handleStateConnecting(InputData* inputData, OutputData* outputData) { 
   // some platform-specific stuff 
-  if (connected2StandbyConditionsMet(inputData)) { 
-    enterPrepareStandbyStateFromConnectingState(outputData); 
-  } else if (inputData->isSpecialStateRequested) { 
-    enterPrepareSpecialModeState(); 
+  if (conditionsTransitionFromConnected2StandbyStateSatisfied(inputData)) { 
+    enterFromPreparingStandby2ConnectingState(outputData); 
+  } else if (inputData->ecStateIssued) { 
+    enterStateSwitchingtoEcMode(); 
   } 
 }
  
-void processResettingState(inputData* inputData) { 
-  if (resetConditionsMet(inputData)) { 
-    // some platform-specific stuff which will reset the hardware, 
- hence when the hardware boots, it will come back into 
- initializing state 
-  } if 
-}
- 
-void processingUpdatingState() { 
-  // no processing during updating; the hardware will reboot after 
- an update 
-}
- 
-void processPrepareSpecialModeState(inputData* inputData) { 
+void handleStateSwitchingToEcMode(InputData* inputData, OutputData* outputData) { 
   // some platform-specific stuff 
-  if (connected2SpecialModeConditionsMet(inputData)) { 
-    enterSpecialModeState(); 
+  if (conditionsTransitionFromConnected2EcModeStateSatisfied(inputData)) { 
+    if (inputData->message != null) { 
+      if (inputData->message->nrOfKeys == 1) { 
+        if (inputData->message->longestKeyPressLength == 1) { 
+          outputData->ledColor = 1; 
+        } else if (inputData->message->longestKeyPressLength > 1) { 
+          outputData->ledColor = 3; 
+        } 
+      } else if (inputData->message->nrOfKeys > 1) { 
+        if (inputData->message->longestKeyPressLength == 1) { 
+          outputData->ledColor = 2; 
+        } else if (inputData->message->longestKeyPressLength > 1) { 
+          outputData->ledColor = 4; 
+        } 
+      } else { 
+        outputData->ledColor = 0; 
+      } 
+    } if 
+     
+    enterStateEcMode(); 
   } if 
 }
  
-void enterConnectedStateFromInitializingState() { 
-  activateController(data_manager); 
-  activateController(sensor_control); 
-  activateController(point_control); 
-  activateController(gesture_control); 
-  activateController(power_control); 
-  activateController(input_control); 
-  activateController(orientation_manager); 
-  activateController(profile_manager); 
-  activateController(host_interface); 
-  activateController(user_interface_control); 
-  activateController(activity_manager); 
-  deactivateController(special_mode_manager); 
+void enterFromConnected2InitializingState() { 
+  activateController(sensors); 
+  activateController(pointer); 
+  activateController(power); 
+  activateController(input); 
+  activateController(orientation); 
+  activateController(drone_interface); 
+  deactivateController(ec_mode); 
   state = connected; 
 }
  
-void enterPrepareStandbyStateFromConnectedState(outputData* outputData) { 
-  activateController(data_manager); 
-  activateController(sensor_control); 
-  deactivateController(point_control); 
-  deactivateController(gesture_control); 
-  deactivateController(power_control); 
-  activateController(input_control); 
-  deactivateController(orientation_manager); 
-  deactivateController(profile_manager); 
-  activateController(host_interface); 
-  activateController(user_interface_control); 
-  activateController(activity_manager); 
-  deactivateController(special_mode_manager); 
-  state = prepare_standby; 
+void enterFromPreparingStandby2ConnectedState(OutputData* outputData) { 
+  activateController(sensors); 
+  deactivateController(pointer); 
+  deactivateController(power); 
+  activateController(input); 
+  deactivateController(orientation); 
+  activateController(drone_interface); 
+  deactivateController(ec_mode); 
+  state = preparing_standby; 
 }
  
-void enterPrepareStandbyStateFromUnconnectedState(outputData* outputData) { 
-  activateController(data_manager); 
-  deactivateController(sensor_control); 
-  deactivateController(point_control); 
-  deactivateController(gesture_control); 
-  deactivateController(power_control); 
-  activateController(input_control); 
-  deactivateController(orientation_manager); 
-  deactivateController(profile_manager); 
-  deactivateController(host_interface); 
-  activateController(user_interface_control); 
-  activateController(activity_manager); 
-  deactivateController(special_mode_manager); 
-  state = prepare_standby; 
+void enterFromPreparingStandby2UnconnectedState(OutputData* outputData) { 
+  deactivateController(sensors); 
+  deactivateController(pointer); 
+  deactivateController(power); 
+  activateController(input); 
+  deactivateController(orientation); 
+  deactivateController(drone_interface); 
+  deactivateController(ec_mode); 
+  state = preparing_standby; 
 }
  
-void enterPrepareStandbyStateFromConnectingState(outputData* outputData) { 
-  activateController(data_manager); 
-  activateController(sensor_control); 
-  deactivateController(point_control); 
-  deactivateController(gesture_control); 
-  deactivateController(power_control); 
-  activateController(input_control); 
-  deactivateController(orientation_manager); 
-  deactivateController(profile_manager); 
-  activateController(host_interface); 
-  activateController(user_interface_control); 
-  activateController(activity_manager); 
-  deactivateController(special_mode_manager); 
-  state = prepare_standby; 
+void enterFromPreparingStandby2ConnectingState(OutputData* outputData) { 
+  activateController(sensors); 
+  deactivateController(pointer); 
+  deactivateController(power); 
+  activateController(input); 
+  deactivateController(orientation); 
+  activateController(drone_interface); 
+  deactivateController(ec_mode); 
+  state = preparing_standby; 
 }
  
-void enterStandbyState(outputData* outputData) { 
-  deactivateController(data_manager); 
-  deactivateController(sensor_control); 
-  deactivateController(point_control); 
-  deactivateController(gesture_control); 
-  deactivateController(power_control); 
-  deactivateController(input_control); 
-  deactivateController(orientation_manager); 
-  deactivateController(profile_manager); 
-  deactivateController(host_interface); 
-  deactivateController(user_interface_control); 
-  deactivateController(activity_manager); 
-  deactivateController(special_mode_manager); 
+void enterStateStandby(OutputData* outputData) { 
+  deactivateController(sensors); 
+  deactivateController(pointer); 
+  deactivateController(power); 
+  deactivateController(input); 
+  deactivateController(orientation); 
+  deactivateController(drone_interface); 
+  deactivateController(ec_mode); 
   state = standby; 
 }
  
-void enterPrepareSpecialModeState() { 
-  activateController(data_manager); 
-  deactivateController(sensor_control); 
-  deactivateController(point_control); 
-  deactivateController(gesture_control); 
-  deactivateController(power_control); 
-  activateController(input_control); 
-  deactivateController(orientation_manager); 
-  activateController(profile_manager); 
-  activateController(host_interface); 
-  deactivateController(user_interface_control); 
-  activateController(activity_manager); 
-  deactivateController(special_mode_manager); 
-  state = prepare_special_mode; 
+void enterStateSwitchingtoEcMode() { 
+  deactivateController(sensors); 
+  deactivateController(pointer); 
+  deactivateController(power); 
+  activateController(input); 
+  deactivateController(orientation); 
+  activateController(drone_interface); 
+  deactivateController(ec_mode); 
+  state = switching_to_ec_mode; 
 }
  
- 
-void enterResettingState(outputData* outputData) { 
-  activateController(data_manager); 
-  activateController(sensor_control); 
-  deactivateController(point_control); 
-  deactivateController(gesture_control); 
-  deactivateController(power_control); 
-  deactivateController(input_control); 
-  deactivateController(orientation_manager); 
-  deactivateController(profile_manager); 
-  activateController(host_interface); 
-  activateController(user_interface_control); 
-  activateController(activity_manager); 
-  activateController(special_mode_manager); 
-  state = resetting; 
+// This state can only be exited by a reset or power cycle. 
+void enterStateEcMode() { 
+  deactivateController(sensors); 
+  deactivateController(pointer); 
+  deactivateController(power); 
+  activateController(input); 
+  deactivateController(orientation); 
+  deactivateController(drone_interface); 
+  activateController(ec_mode); 
+  state = ec_mode; 
 }
  
-void enterUpdatingState(outputData* outputData) { 
-  activateController(data_manager); 
-  deactivateController(sensor_control); 
-  deactivateController(point_control); 
-  deactivateController(gesture_control); 
-  deactivateController(power_control); 
-  activateController(input_control); 
-  deactivateController(orientation_manager); 
-  deactivateController(profile_manager); 
-  activateController(host_interface); 
-  activateController(user_interface_control); 
-  activateController(activity_manager); 
-  deactivateController(special_mode_manager); 
-  state = updating; 
-}
- 
-void enterConnectingState(outputData* outputData) { 
-  activateController(data_manager); 
-  activateController(sensor_control); 
-  activateController(point_control); 
-  activateController(gesture_control); 
-  activateController(power_control); 
-  activateController(input_control); 
-  activateController(orientation_manager); 
-  activateController(profile_manager); 
-  activateController(host_interface); 
-  activateController(user_interface_control); 
-  activateController(activity_manager); 
-  deactivateController(special_mode_manager); 
+void enterConnectingState(OutputData* outputData) { 
+  activateController(sensors); 
+  activateController(pointer); 
+  activateController(power); 
+  activateController(input); 
+  activateController(orientation); 
+  activateController(drone_interface); 
+  deactivateController(ec_mode); 
   state = connecting; 
 }
  
-boolean resetConditionsMet(inputData* inputData) { 
-  boolean inactivity; 
-  if (inputData->inactivityEvent != null) { 
-    inactivity = (*inputData->inactivityEvent == inactivity); 
-  } if 
-  return inactivity; 
-}
- 
-boolean connected2StandbyConditionsMet(inputData* inputData) { 
+boolean conditionsTransitionFromConnected2StandbyStateSatisfied(InputData* inputData) { 
   boolean keyStuck = false; 
   boolean inactivity = false; 
   boolean standbyRequested = false; 
   if (inputData->message != null) { 
     keyStuck = (inputData->message->event == key_stuck); 
   } if 
-  if (inputData->inactivityEvent != null) { 
-    inactivity = (*inputData->inactivityEvent == inactivity); 
+  if (inputData->inactiveEvent != null) { 
+    inactivity = (*inputData->inactiveEvent == inactivity); 
   } if 
-  if (inputData->isSwitchRecorded) { 
+  if (inputData->switchRegistered) { 
     standbyRequested = inputData->message->event == switch_standby; 
   } if 
   return keyStuck || inactivity || standbyRequested; 
 }
  
-boolean connected2SpecialModeConditionsMet(inputData* inputData) { 
+boolean conditionsTransitionFromConnected2EcModeStateSatisfied(InputData* inputData) { 
   boolean inactivity; 
-  if (inputData->inactivityEvent != null) { 
-    inactivity = (*inputData->inactivityEvent == inactivity); 
+  if (inputData->inactiveEvent != null) { 
+    inactivity = (*inputData->inactiveEvent == inactivity); 
   } if 
   return inactivity; 
 }
  
-void controlProcess(inputData* inputData, outputData* outputData) { 
+double calculateSignalStrength(int32[] arr, int32 size) { 
+  double sum_result = 0; 
+  int32 k = 0; 
+  for (k = 0; k < size; ++k) { 
+    double product_result = 1; 
+    int32 i = 0; 
+    for (i = 0; i < k; ++i) { 
+      product_result *= log2(arr[i]); 
+    } for 
+    sum_result += product_result / 2; 
+  } for 
+  return sum_result; 
+}
+ 
+void controlProcess(InputData* inputData, OutputData* outputData) { 
   switch (state) { 
     case initializing: { 
-      processInitializingState(inputData, outputData); 
+      handleStateInitializing(inputData, outputData); 
       break; 
     } case 
-    case prepare_standby: { 
-      processPrepareStandbyState(inputData, outputData); 
+    case preparing_standby: { 
+      handleStatePreparingStandby(inputData, outputData); 
       break; 
     } case 
     case standby: { 
-      processStandbyState(inputData); 
+      handleStateStandby(inputData); 
       break; 
     } case 
     case connected: { 
-      processConnectedState(inputData, outputData); 
+      handleStateConnected(inputData, outputData); 
       break; 
     } case 
-    case unconnected: { 
-      processUnconnectedState(inputData, outputData); 
+    case disconnected: { 
+      handleStateDisconnected(inputData, outputData); 
       break; 
     } case 
     case connecting: { 
-      processConnectingState(inputData, outputData); 
+      handleStateConnecting(inputData, outputData); 
       break; 
     } case 
-    case resetting: { 
-      processResettingState(inputData); 
+    case switching_to_ec_mode: { 
+      handleStateSwitchingToEcMode(inputData, outputData); 
       break; 
     } case 
-    case prepare_special_mode: { 
-      processPrepareSpecialModeState(inputData); 
-      break; 
-    } case 
-    case special_mode: { 
+    case ec_mode: { 
       // No behavior here 
        
       break; 
     } case 
-    case updating: { 
-      processingUpdatingState(); 
-      break; 
-    } case 
     case uninitialized: { 
-      // Do not add break here 
+      // Fallthrough is intentional, no break allowed here 
     } case 
     default: { 
       assert(false); 
@@ -446,11 +371,19 @@ void controlProcess(inputData* inputData, outputData* outputData) {
   // inputData updates 
 }
  
-int32 main(int32 argc, string[] argv) { 
-  inputData inputData; 
-  outputData outputData; 
+void fill_input_with_default_values(InputData e) { 
+  if (e.droneState == connected && e.connectIssued == false) { 
+    e.ecStateIssued = true; 
+  } else { 
+    e.ecStateIssued = false; 
+  } if 
+  e.switchRegistered = false; 
+}
+ 
+exported int32 main(int32 argc, string[] argv) { 
+  InputData inputData; 
+  OutputData outputData; 
   while (true) { 
     controlProcess(&inputData, &outputData); 
   } while 
-  return 0; 
 }
