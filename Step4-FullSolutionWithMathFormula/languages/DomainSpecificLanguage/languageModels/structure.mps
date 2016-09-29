@@ -2,7 +2,7 @@
 <model ref="r:f8ad3268-3097-4651-9207-8a3f9a1a3a64(DomainSpecificLanguage.structure)">
   <persistence version="9" />
   <languages>
-    <use id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure" version="-1" />
+    <use id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure" version="1" />
     <devkit ref="fbc25dd2-5da4-483a-8b19-70928e1b62d7(jetbrains.mps.devkit.general-purpose)" />
   </languages>
   <imports>
@@ -22,6 +22,7 @@
         <property id="1083923523172" name="externalValue" index="1uS6qo" />
       </concept>
       <concept id="1169125787135" name="jetbrains.mps.lang.structure.structure.AbstractConceptDeclaration" flags="ig" index="PkWjJ">
+        <property id="1587916991969465369" name="conceptId" index="1pbfSe" />
         <child id="1071489727083" name="linkDeclaration" index="1TKVEi" />
         <child id="1071489727084" name="propertyDeclaration" index="1TKVEl" />
       </concept>
@@ -50,6 +51,7 @@
   </registry>
   <node concept="1TIwiD" id="7pFWc46FHKt">
     <property role="TrG5h" value="ActivationStatement" />
+    <property role="1pbfSe" value="2098908382" />
     <ref role="1TJDcQ" to="c4fa:3CmSUB7FmO3" resolve="Statement" />
     <node concept="1TJgyj" id="7pFWc46Hbrt" role="1TKVEi">
       <property role="20lmBu" value="reference" />
@@ -60,6 +62,7 @@
   </node>
   <node concept="1TIwiD" id="7pFWc46GUL6">
     <property role="TrG5h" value="ActivationDecl" />
+    <property role="1pbfSe" value="2099223815" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyj" id="7iLD7IPHpfn" role="1TKVEi">
       <property role="20lmBu" value="aggregation" />
@@ -104,6 +107,7 @@
   </node>
   <node concept="1TIwiD" id="7iLD7IPG5qn">
     <property role="TrG5h" value="Profile" />
+    <property role="1pbfSe" value="711064338" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyi" id="7iLD7IPVfuw" role="1TKVEl">
       <property role="TrG5h" value="profileName" />
@@ -118,6 +122,7 @@
   </node>
   <node concept="1TIwiD" id="7iLD7IPKLnh">
     <property role="TrG5h" value="BooleanValue" />
+    <property role="1pbfSe" value="712292940" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyi" id="7iLD7IPKLni" role="1TKVEl">
       <property role="TrG5h" value="value" />
@@ -126,6 +131,7 @@
   </node>
   <node concept="1TIwiD" id="Ll6J3comfR">
     <property role="TrG5h" value="ProfiledEntryAction" />
+    <property role="1pbfSe" value="659128601" />
     <ref role="1TJDcQ" to="clqz:47Sr75PmDA0" resolve="EntryAction" />
     <node concept="1TJgyj" id="Ll6J3conf9" role="1TKVEi">
       <property role="20lmBu" value="reference" />
