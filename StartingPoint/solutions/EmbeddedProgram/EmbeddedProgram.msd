@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solution name="EmbeddedProgram" uuid="3982e453-568f-4861-b238-02cd967db195" compileInMPS="true">
+<solution name="EmbeddedProgram" uuid="3982e453-568f-4861-b238-02cd967db195" moduleVersion="0" compileInMPS="true">
   <models>
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
     </modelRoot>
   </models>
   <sourcePath />
-  <dependencies>
-    <dependency reexport="false">b87ff58e-456e-4d51-9ed6-4090f4e7b51c(mbeddr.tutorial.main)</dependency>
-    <dependency reexport="false">094b2842-e972-4406-b60e-898cdcdb9de5(test.analyses.cbmc.testcode)</dependency>
-  </dependencies>
   <usedLanguages>
     <usedLanguage>daa1849d-6955-4fef-afe3-8aea1f61e6fa(com.mbeddr.analyses.cbmc.statemachines)</usedLanguage>
     <usedLanguage>d4280a54-f6df-4383-aa41-d1b2bffa7eb1(com.mbeddr.core.base)</usedLanguage>
@@ -29,5 +25,11 @@
     <usedDevKit>54c79f9f-f3ba-4167-91f1-eb4e98a9c47c(com.mbeddr.documentation)</usedDevKit>
     <usedDevKit>43d889ae-8e6a-4f6e-a649-d59342d8728d(com.mbeddr.statemachines)</usedDevKit>
   </usedDevKits>
+  <languageVersions>
+    <language slang="l:ceab5195-25ea-4f22-9b92-103b95ca8c0c:jetbrains.mps.lang.core" version="1" />
+  </languageVersions>
+  <dependencyVersions>
+    <module reference="3982e453-568f-4861-b238-02cd967db195(EmbeddedProgram)" version="0" />
+  </dependencyVersions>
 </solution>
 
