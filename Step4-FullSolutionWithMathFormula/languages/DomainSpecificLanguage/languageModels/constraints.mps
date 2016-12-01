@@ -8,11 +8,11 @@
   </languages>
   <imports>
     <import index="9ug2" ref="r:f8ad3268-3097-4651-9207-8a3f9a1a3a64(DomainSpecificLanguage.structure)" />
+    <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
+    <import index="x27k" ref="r:75ecab8a-8931-4140-afc6-4b46398710fc(com.mbeddr.core.modules.structure)" implicit="true" />
     <import index="clbe" ref="r:61d840b4-12c1-49ea-b142-b2a1550a9b15(com.mbeddr.core.udt.structure)" implicit="true" />
     <import index="mj1l" ref="r:c371cf98-dcc8-4a43-8eb8-8a8096de18b2(com.mbeddr.core.expressions.structure)" implicit="true" />
-    <import index="e2lb" ref="f:java_stub#6354ebe7-c22a-4a0f-ac54-50b52ab9b065#java.lang(JDK/java.lang@java_stub)" implicit="true" />
-    <import index="x27k" ref="r:75ecab8a-8931-4140-afc6-4b46398710fc(com.mbeddr.core.modules.structure)" implicit="true" />
   </imports>
   <registry>
     <language id="13744753-c81f-424a-9c1b-cf8943bf4e86" name="jetbrains.mps.lang.sharedConcepts">
@@ -117,7 +117,7 @@
       <concept id="1883223317721107059" name="jetbrains.mps.lang.smodel.structure.IfInstanceOfVarReference" flags="nn" index="Jnkvi" />
       <concept id="1171305280644" name="jetbrains.mps.lang.smodel.structure.Node_GetDescendantsOperation" flags="nn" index="2Rf3mk" />
       <concept id="1171323947159" name="jetbrains.mps.lang.smodel.structure.Model_NodesOperation" flags="nn" index="2SmgA7">
-        <reference id="1171323947160" name="concept" index="2SmgA8" />
+        <child id="1758937410080001570" name="conceptArgument" index="1dBWTz" />
       </concept>
       <concept id="1171407110247" name="jetbrains.mps.lang.smodel.structure.Node_GetAncestorOperation" flags="nn" index="2Xjw5R" />
       <concept id="1144100932627" name="jetbrains.mps.lang.smodel.structure.OperationParm_Inclusion" flags="ng" index="1xIGOp" />
@@ -155,13 +155,13 @@
   <node concept="1M2fIO" id="7pFWc46I6fi">
     <ref role="1M2myG" to="9ug2:7pFWc46GUL6" resolve="ActivationDecl" />
     <node concept="1N5Pfh" id="7pFWc46Iy$b" role="1Mr941">
-      <ref role="1N5Vy1" to="9ug2:7pFWc46H8FA" />
+      <ref role="1N5Vy1" to="9ug2:7pFWc46H8FA" resolve="enumeration" />
       <node concept="Bn3R3" id="7pFWc46IyI$" role="Bn3R6">
         <node concept="3clFbS" id="7pFWc46IyI_" role="2VODD2">
           <node concept="3cpWs6" id="7pFWc46IAc_" role="3cqZAp">
             <node concept="2YIFZM" id="7pFWc46IAxG" role="3cqZAk">
-              <ref role="1Pybhc" to="e2lb:~String" resolve="String" />
-              <ref role="37wK5l" to="e2lb:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
+              <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
+              <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
               <node concept="Xl_RD" id="7pFWc46IAGN" role="37wK5m">
                 <property role="Xl_RC" value="activation(%s);" />
               </node>
@@ -177,7 +177,7 @@
       </node>
     </node>
     <node concept="1N5Pfh" id="7iLD7IQmg$D" role="1Mr941">
-      <ref role="1N5Vy1" to="9ug2:7iLD7IQ210S" />
+      <ref role="1N5Vy1" to="9ug2:7iLD7IQ210S" resolve="activation" />
       <node concept="1MUpDS" id="7iLD7IQmg_t" role="1N6uqs">
         <node concept="3clFbS" id="7iLD7IQmg_v" role="2VODD2">
           <node concept="3clFbF" id="7iLD7IQmgH5" role="3cqZAp">
@@ -185,7 +185,9 @@
               <node concept="2OqwBi" id="7iLD7IQmgKz" role="2Oq$k0">
                 <node concept="1Q6Npb" id="7iLD7IQmgH4" role="2Oq$k0" />
                 <node concept="2SmgA7" id="7iLD7IQmgUf" role="2OqNvi">
-                  <ref role="2SmgA8" to="x27k:5_l8w1EmTvx" resolve="Function" />
+                  <node concept="chp4Y" id="2gadOu3$EyF" role="1dBWTz">
+                    <ref role="cht4Q" to="x27k:5_l8w1EmTvx" resolve="Function" />
+                  </node>
                 </node>
               </node>
               <node concept="3zZkjj" id="7iLD7IQn7Wd" role="2OqNvi">
@@ -209,7 +211,7 @@
                               <ref role="3cqZAo" node="7iLD7IQn7Wh" resolve="it" />
                             </node>
                             <node concept="3Tsc0h" id="7iLD7IQnLUM" role="2OqNvi">
-                              <ref role="3TtcxE" to="x27k:4WTYg$PUiX5" />
+                              <ref role="3TtcxE" to="x27k:4WTYg$PUiX5" resolve="arguments" />
                             </node>
                           </node>
                           <node concept="34oBXx" id="7iLD7IQnTL8" role="2OqNvi" />
@@ -228,12 +230,12 @@
                               <ref role="3cqZAo" node="7iLD7IQn7Wh" resolve="it" />
                             </node>
                             <node concept="3Tsc0h" id="7iLD7IQnACb" role="2OqNvi">
-                              <ref role="3TtcxE" to="x27k:4WTYg$PUiX5" />
+                              <ref role="3TtcxE" to="x27k:4WTYg$PUiX5" resolve="arguments" />
                             </node>
                           </node>
                         </node>
                         <node concept="3TrEf2" id="7iLD7IQnGqx" role="2OqNvi">
-                          <ref role="3Tt5mk" to="mj1l:hEaDaGor64" />
+                          <ref role="3Tt5mk" to="mj1l:hEaDaGor64" resolve="type" />
                         </node>
                       </node>
                       <node concept="3clFbS" id="7iLD7IQn$tQ" role="Jncv$">
@@ -252,7 +254,7 @@
                                 </node>
                               </node>
                               <node concept="3TrEf2" id="7iLD7IQo883" role="2OqNvi">
-                                <ref role="3Tt5mk" to="9ug2:7pFWc46H8FA" />
+                                <ref role="3Tt5mk" to="9ug2:7pFWc46H8FA" resolve="enumeration" />
                               </node>
                             </node>
                             <node concept="2OqwBi" id="7iLD7IQnYsk" role="3uHU7B">
@@ -260,7 +262,7 @@
                                 <ref role="1M0zk5" node="7iLD7IQn$tS" resolve="et" />
                               </node>
                               <node concept="3TrEf2" id="7iLD7IQnZAV" role="2OqNvi">
-                                <ref role="3Tt5mk" to="clbe:7D99css6O16" />
+                                <ref role="3Tt5mk" to="clbe:7D99css6O16" resolve="enum" />
                               </node>
                             </node>
                           </node>
@@ -289,7 +291,7 @@
       </node>
     </node>
     <node concept="1N5Pfh" id="7iLD7IQoG5j" role="1Mr941">
-      <ref role="1N5Vy1" to="9ug2:7iLD7IQ24VQ" />
+      <ref role="1N5Vy1" to="9ug2:7iLD7IQ24VQ" resolve="deactivation" />
       <node concept="1MUpDS" id="7iLD7IQoG93" role="1N6uqs">
         <node concept="3clFbS" id="7iLD7IQoG94" role="2VODD2">
           <node concept="3clFbF" id="7iLD7IQpW2s" role="3cqZAp">
@@ -334,7 +336,7 @@
                               <ref role="3cqZAo" node="7iLD7IQq_cf" resolve="it" />
                             </node>
                             <node concept="3Tsc0h" id="7iLD7IQq_kE" role="2OqNvi">
-                              <ref role="3TtcxE" to="x27k:4WTYg$PUiX5" />
+                              <ref role="3TtcxE" to="x27k:4WTYg$PUiX5" resolve="arguments" />
                             </node>
                           </node>
                           <node concept="34oBXx" id="7iLD7IQq_kF" role="2OqNvi" />
@@ -353,12 +355,12 @@
                               <ref role="3cqZAo" node="7iLD7IQq_cf" resolve="it" />
                             </node>
                             <node concept="3Tsc0h" id="7iLD7IQq_kM" role="2OqNvi">
-                              <ref role="3TtcxE" to="x27k:4WTYg$PUiX5" />
+                              <ref role="3TtcxE" to="x27k:4WTYg$PUiX5" resolve="arguments" />
                             </node>
                           </node>
                         </node>
                         <node concept="3TrEf2" id="7iLD7IQq_kN" role="2OqNvi">
-                          <ref role="3Tt5mk" to="mj1l:hEaDaGor64" />
+                          <ref role="3Tt5mk" to="mj1l:hEaDaGor64" resolve="type" />
                         </node>
                       </node>
                       <node concept="3clFbS" id="7iLD7IQq_kO" role="Jncv$">
@@ -377,7 +379,7 @@
                                 </node>
                               </node>
                               <node concept="3TrEf2" id="7iLD7IQq_kY" role="2OqNvi">
-                                <ref role="3Tt5mk" to="9ug2:7pFWc46H8FA" />
+                                <ref role="3Tt5mk" to="9ug2:7pFWc46H8FA" resolve="enumeration" />
                               </node>
                             </node>
                             <node concept="2OqwBi" id="7iLD7IQq_kZ" role="3uHU7B">
@@ -385,7 +387,7 @@
                                 <ref role="1M0zk5" node="7iLD7IQq_l2" resolve="et" />
                               </node>
                               <node concept="3TrEf2" id="7iLD7IQq_l1" role="2OqNvi">
-                                <ref role="3Tt5mk" to="clbe:7D99css6O16" />
+                                <ref role="3Tt5mk" to="clbe:7D99css6O16" resolve="enum" />
                               </node>
                             </node>
                           </node>
@@ -420,13 +422,13 @@
   <node concept="1M2fIO" id="7pFWc46J4Xc">
     <ref role="1M2myG" to="9ug2:7pFWc46FHKt" resolve="ActivationStatement" />
     <node concept="1N5Pfh" id="7pFWc46J4Y0" role="1Mr941">
-      <ref role="1N5Vy1" to="9ug2:7pFWc46Hbrt" />
+      <ref role="1N5Vy1" to="9ug2:7pFWc46Hbrt" resolve="decl" />
       <node concept="Bn3R3" id="7pFWc46J4Y2" role="Bn3R6">
         <node concept="3clFbS" id="7pFWc46J4Y3" role="2VODD2">
           <node concept="3cpWs6" id="7iLD7IQ1lS8" role="3cqZAp">
             <node concept="2YIFZM" id="7iLD7IQ1mLy" role="3cqZAk">
-              <ref role="37wK5l" to="e2lb:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
-              <ref role="1Pybhc" to="e2lb:~String" resolve="String" />
+              <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
+              <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
               <node concept="Xl_RD" id="7iLD7IQ1nu6" role="37wK5m">
                 <property role="Xl_RC" value="activate %s.%s;" />
               </node>
@@ -470,7 +472,7 @@
               <node concept="2OqwBi" id="7iLD7IPWXAg" role="2Oq$k0">
                 <node concept="EsrRn" id="7iLD7IPWXy7" role="2Oq$k0" />
                 <node concept="3Tsc0h" id="7iLD7IPWXZb" role="2OqNvi">
-                  <ref role="3TtcxE" to="9ug2:7iLD7IPLmUW" />
+                  <ref role="3TtcxE" to="9ug2:7iLD7IPLmUW" resolve="values" />
                 </node>
               </node>
               <node concept="34oBXx" id="7iLD7IPX0CH" role="2OqNvi" />
@@ -483,13 +485,13 @@
   <node concept="1M2fIO" id="Ll6J3cqliu">
     <ref role="1M2myG" to="9ug2:Ll6J3comfR" resolve="ProfiledEntryAction" />
     <node concept="1N5Pfh" id="Ll6J3cqlu4" role="1Mr941">
-      <ref role="1N5Vy1" to="9ug2:Ll6J3conf9" />
+      <ref role="1N5Vy1" to="9ug2:Ll6J3conf9" resolve="profile" />
       <node concept="Bn3R3" id="Ll6J3cqlu6" role="Bn3R6">
         <node concept="3clFbS" id="Ll6J3cqlu7" role="2VODD2">
           <node concept="3cpWs6" id="Ll6J3cqm2X" role="3cqZAp">
             <node concept="2YIFZM" id="Ll6J3cqmiU" role="3cqZAk">
-              <ref role="1Pybhc" to="e2lb:~String" resolve="String" />
-              <ref role="37wK5l" to="e2lb:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
+              <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
+              <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
               <node concept="Xl_RD" id="Ll6J3cqmoW" role="37wK5m">
                 <property role="Xl_RC" value="entry using %s.%s" />
               </node>
