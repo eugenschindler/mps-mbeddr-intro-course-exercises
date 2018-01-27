@@ -37,10 +37,6 @@
       <concept id="7763322639126652757" name="com.mbeddr.core.statements.structure.ITypeContainingType" flags="ng" index="2umbIr">
         <child id="7763322639126652758" name="baseType" index="2umbIo" />
       </concept>
-      <concept id="3779779187805893258" name="com.mbeddr.core.statements.structure.ForVarRef" flags="ng" index="uSsIJ">
-        <child id="3779779187805893261" name="init" index="uSsIC" />
-        <child id="3779779187805926915" name="var" index="uS$WA" />
-      </concept>
       <concept id="1494329074535282918" name="com.mbeddr.core.statements.structure.ElsePart" flags="ng" index="1ly_i6">
         <child id="1494329074535283249" name="body" index="1ly_ph" />
       </concept>
@@ -50,7 +46,6 @@
       <concept id="7254843406768596598" name="com.mbeddr.core.statements.structure.ForStatement" flags="ng" index="1_a8vi">
         <child id="7254843406768606771" name="body" index="1_amYn" />
         <child id="7254843406768606790" name="incr" index="1_amZy" />
-        <child id="7254843406768606784" name="iterator" index="1_amZ$" />
         <child id="7254843406768606787" name="condition" index="1_amZB" />
       </concept>
       <concept id="1679452829930336984" name="com.mbeddr.core.statements.structure.CommentStatement" flags="ng" index="1QiMYF">
@@ -2648,15 +2643,17 @@
             <property role="2hmy$m" value="0" />
           </node>
         </node>
-        <node concept="1_a8vi" id="5X2ZuWDZO20" role="3XIRFZ">
-          <node concept="uSsIJ" id="5X2ZuWDZOwW" role="1_amZ$">
-            <node concept="3TlMh9" id="5X2ZuWDZP1R" role="uSsIC">
-              <property role="2hmy$m" value="0" />
-            </node>
-            <node concept="3ZVu4v" id="5X2ZuWDZOwU" role="uS$WA">
+        <node concept="1_9egQ" id="3qU7EglT9HK" role="3XIRFZ">
+          <node concept="3pqW6w" id="3qU7EglT9HL" role="1_9egR">
+            <node concept="3ZVu4v" id="3qU7EglT9HI" role="3TlMhI">
               <ref role="3ZVs_2" node="5X2ZuWDZLFN" resolve="k" />
             </node>
+            <node concept="3TlMh9" id="3qU7EglT9HJ" role="3TlMhJ">
+              <property role="2hmy$m" value="0" />
+            </node>
           </node>
+        </node>
+        <node concept="1_a8vi" id="5X2ZuWDZO20" role="3XIRFZ">
           <node concept="3XIRFW" id="5X2ZuWDZO22" role="1_amYn">
             <node concept="3XIRlf" id="5X2ZuWDZZb5" role="3XIRFZ">
               <property role="TrG5h" value="product_result" />
@@ -2678,15 +2675,17 @@
                 <property role="2hmy$m" value="0" />
               </node>
             </node>
-            <node concept="1_a8vi" id="5X2ZuWDZSvf" role="3XIRFZ">
-              <node concept="uSsIJ" id="5X2ZuWDZSyt" role="1_amZ$">
-                <node concept="3TlMh9" id="5X2ZuWDZSCB" role="uSsIC">
-                  <property role="2hmy$m" value="0" />
-                </node>
-                <node concept="3ZVu4v" id="5X2ZuWDZSyr" role="uS$WA">
+            <node concept="1_9egQ" id="3qU7EglT9HO" role="3XIRFZ">
+              <node concept="3pqW6w" id="3qU7EglT9HP" role="1_9egR">
+                <node concept="3ZVu4v" id="3qU7EglT9HM" role="3TlMhI">
                   <ref role="3ZVs_2" node="5X2ZuWDZRsa" resolve="i" />
                 </node>
+                <node concept="3TlMh9" id="3qU7EglT9HN" role="3TlMhJ">
+                  <property role="2hmy$m" value="0" />
+                </node>
               </node>
+            </node>
+            <node concept="1_a8vi" id="5X2ZuWDZSvf" role="3XIRFZ">
               <node concept="3XIRFW" id="5X2ZuWDZSvh" role="1_amYn">
                 <node concept="1_9egQ" id="5X2ZuWE0d25" role="3XIRFZ">
                   <node concept="3omEAZ" id="5X2ZuWE0d5j" role="1_9egR">
