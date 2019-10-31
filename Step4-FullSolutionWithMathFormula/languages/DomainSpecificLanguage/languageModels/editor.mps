@@ -288,7 +288,7 @@
                   <node concept="3cpWs6" id="3qU7EglUfkU" role="3cqZAp">
                     <node concept="2YIFZM" id="3qU7EglUfkV" role="3cqZAk">
                       <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
-                      <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
+                      <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                       <node concept="Xl_RD" id="3qU7EglUfkW" role="37wK5m">
                         <property role="Xl_RC" value="activation(%s);" />
                       </node>
@@ -458,7 +458,7 @@
                       </node>
                     </node>
                     <node concept="liA8E" id="7iLD7IPVRTK" role="2OqNvi">
-                      <ref role="37wK5l" to="wyt6:~String.split(java.lang.String):java.lang.String[]" resolve="split" />
+                      <ref role="37wK5l" to="wyt6:~String.split(java.lang.String)" resolve="split" />
                       <node concept="Xl_RD" id="7iLD7IPVSnb" role="37wK5m">
                         <property role="Xl_RC" value="_" />
                       </node>
@@ -721,7 +721,7 @@
               <node concept="3clFbS" id="3qU7EglUfl4" role="2VODD2">
                 <node concept="3cpWs6" id="3qU7EglUfl5" role="3cqZAp">
                   <node concept="2YIFZM" id="3qU7EglUfl6" role="3cqZAk">
-                    <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
+                    <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                     <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
                     <node concept="Xl_RD" id="3qU7EglUfl7" role="37wK5m">
                       <property role="Xl_RC" value="activate %s.%s;" />
@@ -855,7 +855,7 @@
                 <node concept="3cpWs6" id="3qU7EglUfkB" role="3cqZAp">
                   <node concept="2YIFZM" id="3qU7EglUfkC" role="3cqZAk">
                     <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
-                    <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
+                    <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                     <node concept="Xl_RD" id="3qU7EglUfkD" role="37wK5m">
                       <property role="Xl_RC" value="entry using %s.%s" />
                     </node>
@@ -911,7 +911,7 @@
           <node concept="3cpWs6" id="3qU7EglUfjK" role="3cqZAp">
             <node concept="2YIFZM" id="3qU7EglUfjL" role="3cqZAk">
               <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
-              <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
+              <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
               <node concept="Xl_RD" id="3qU7EglUfjM" role="37wK5m">
                 <property role="Xl_RC" value="entry using %s.%s" />
               </node>
@@ -961,7 +961,7 @@
         <node concept="3clFbS" id="3qU7EglUfk9" role="2VODD2">
           <node concept="3cpWs6" id="3qU7EglUfka" role="3cqZAp">
             <node concept="2YIFZM" id="3qU7EglUfkb" role="3cqZAk">
-              <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...):java.lang.String" resolve="format" />
+              <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
               <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
               <node concept="Xl_RD" id="3qU7EglUfkc" role="37wK5m">
                 <property role="Xl_RC" value="activate %s.%s;" />
