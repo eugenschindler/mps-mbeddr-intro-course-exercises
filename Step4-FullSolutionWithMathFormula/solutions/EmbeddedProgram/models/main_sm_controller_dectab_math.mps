@@ -12,7 +12,7 @@
     <use id="a9d69647-0840-491e-bf39-2eb0805d2011" name="com.mbeddr.core.statements" version="2" />
     <use id="61c69711-ed61-4850-81d9-7714ff227fb0" name="com.mbeddr.core.expressions" version="5" />
     <use id="b574d547-b77e-4fed-9f60-c349c4410765" name="com.mbeddr.ext.math" version="-1" />
-    <use id="d4280a54-f6df-4383-aa41-d1b2bffa7eb1" name="com.mbeddr.core.base" version="5" />
+    <use id="d4280a54-f6df-4383-aa41-d1b2bffa7eb1" name="com.mbeddr.core.base" version="6" />
     <use id="6d11763d-483d-4b2b-8efc-09336c1b0001" name="com.mbeddr.core.modules" version="5" />
     <use id="daa1849d-6955-4fef-afe3-8aea1f61e6fa" name="com.mbeddr.analyses.cbmc.statemachines" version="-1" />
     <use id="8ca79d43-eb45-4791-bdd4-0d6130ff895b" name="de.itemis.mps.editor.diagram.layout" version="0" />
@@ -237,6 +237,7 @@
       <concept id="5778488248013533839" name="com.mbeddr.ext.statemachines.structure.State" flags="ng" index="1LFebX" />
     </language>
     <language id="b574d547-b77e-4fed-9f60-c349c4410765" name="com.mbeddr.ext.math">
+      <concept id="666324024671982185" name="com.mbeddr.ext.math.structure.MathConfigurationItem" flags="ng" index="22RD12" />
       <concept id="5098456557381793727" name="com.mbeddr.ext.math.structure.FractionExpression" flags="ng" index="2zguM6">
         <child id="5098456557382006631" name="right" index="2zgELu" />
         <child id="5098456557382006592" name="left" index="2zgELT" />
@@ -392,6 +393,7 @@
         <property role="TrG5h" value="any" />
       </node>
     </node>
+    <node concept="22RD12" id="2dy2PMDOcDa" role="2Q9xDr" />
   </node>
   <node concept="N3F5e" id="7iLD7IPXjWJ">
     <property role="TrG5h" value="IntegratedCProgramSMAPDTM" />
