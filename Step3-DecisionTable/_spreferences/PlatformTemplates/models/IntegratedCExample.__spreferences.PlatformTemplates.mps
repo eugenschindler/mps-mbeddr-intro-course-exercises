@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:8adbdf9a-cd77-4de5-a997-d84b664a906b(IntegratedCExample.__spreferences.PlatformTemplates)">
+<model ref="r:9f1a4b8a-6256-4d76-b9b3-6f9598f57a1c(IntegratedCExample.__spreferences.PlatformTemplates)">
   <persistence version="9" />
   <languages>
-    <use id="2d7fadf5-33f6-4e80-a78f-0f739add2bde" name="com.mbeddr.core.buildconfig" version="9" />
+    <use id="2d7fadf5-33f6-4e80-a78f-0f739add2bde" name="com.mbeddr.core.buildconfig" version="10" />
   </languages>
   <imports />
   <registry>
@@ -14,12 +14,12 @@
         <child id="8719112291174072694" name="templates" index="2xbcco" />
       </concept>
       <concept id="5323740605968447022" name="com.mbeddr.core.buildconfig.structure.DesktopPlatform" flags="ng" index="2AWWZL">
-        <property id="5323740605968447025" name="compilerOptions" index="2AWWZI" />
-        <property id="5323740605968447024" name="compiler" index="2AWWZJ" />
-        <property id="8774011376396215812" name="linker" index="18_EFo" />
+        <property id="5323740605968447025" name="cCompilerOptions" index="2AWWZI" />
+        <property id="5323740605968447024" name="cCompiler" index="2AWWZJ" />
+        <property id="1253797277664981186" name="cppCompilerOptions" index="UXd4T" />
+        <property id="1253797277664981177" name="cppCompiler" index="UXd52" />
         <property id="3963667026125442601" name="gdb" index="3r8Kw1" />
         <property id="3963667026125442676" name="make" index="3r8Kxs" />
-        <property id="1691534949151697076" name="linkerOptions" index="3I8uaA" />
       </concept>
       <concept id="5323740605968447019" name="com.mbeddr.core.buildconfig.structure.Platform" flags="ng" index="2AWWZO">
         <property id="5952395988556102274" name="supportsSharedLibraries" index="uKT8v" />
@@ -34,15 +34,15 @@
       </concept>
     </language>
   </registry>
-  <node concept="2xbcct" id="2dy2PMDLYVa">
-    <node concept="2xbbuh" id="2dy2PMDLYVc" role="2xbcco">
+  <node concept="2xbcct" id="3dFqA8CqPN4">
+    <node concept="2xbbuh" id="3dFqA8CqPN6" role="2xbcco">
       <property role="TrG5h" value="Desktop Platform" />
-      <node concept="2AWWZL" id="2dy2PMDLYVb" role="2xbbhh">
+      <node concept="2AWWZL" id="3dFqA8CqPN5" role="2xbbhh">
         <property role="3r8Kxs" value="make" />
         <property role="2AWWZJ" value="gcc" />
         <property role="2AWWZI" value="-std=c99" />
-        <property role="18_EFo" value="gcc" />
-        <property role="3I8uaA" value="" />
+        <property role="UXd52" value="g++" />
+        <property role="UXd4T" value="-std=c++11" />
         <property role="3r8Kw1" value="gdb" />
         <property role="1FkSt$" value="-g" />
         <property role="uKT8v" value="true" />

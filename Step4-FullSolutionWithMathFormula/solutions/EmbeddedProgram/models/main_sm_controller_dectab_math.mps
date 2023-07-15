@@ -4,7 +4,7 @@
   <languages>
     <use id="564e97d6-8fb7-41f5-bfc1-c7ed376efd62" name="com.mbeddr.ext.statemachines" version="1" />
     <use id="2693fc71-9b0e-4b05-ab13-f57227d675f2" name="com.mbeddr.core.util" version="-1" />
-    <use id="2d7fadf5-33f6-4e80-a78f-0f739add2bde" name="com.mbeddr.core.buildconfig" version="9" />
+    <use id="2d7fadf5-33f6-4e80-a78f-0f739add2bde" name="com.mbeddr.core.buildconfig" version="10" />
     <use id="efda956e-491e-4f00-ba14-36af2f213ecf" name="com.mbeddr.core.udt" version="5" />
     <use id="3bf5377a-e904-4ded-9754-5a516023bfaa" name="com.mbeddr.core.pointers" version="-1" />
     <use id="92d2ea16-5a42-4fdf-a676-c7604efe3504" name="de.slisson.mps.richtext" version="-1" />
@@ -76,9 +76,10 @@
         <reference id="7717755763392524108" name="module" index="2v9HqP" />
       </concept>
       <concept id="5323740605968447022" name="com.mbeddr.core.buildconfig.structure.DesktopPlatform" flags="ng" index="2AWWZL">
-        <property id="5323740605968447025" name="compilerOptions" index="2AWWZI" />
-        <property id="5323740605968447024" name="compiler" index="2AWWZJ" />
-        <property id="8774011376396215812" name="linker" index="18_EFo" />
+        <property id="5323740605968447025" name="cCompilerOptions" index="2AWWZI" />
+        <property id="5323740605968447024" name="cCompiler" index="2AWWZJ" />
+        <property id="1253797277664981186" name="cppCompilerOptions" index="UXd4T" />
+        <property id="1253797277664981177" name="cppCompiler" index="UXd52" />
         <property id="3963667026125442601" name="gdb" index="3r8Kw1" />
         <property id="3963667026125442676" name="make" index="3r8Kxs" />
         <property id="1691534949151697076" name="linkerOptions" index="3I8uaA" />
@@ -237,7 +238,6 @@
       <concept id="5778488248013533839" name="com.mbeddr.ext.statemachines.structure.State" flags="ng" index="1LFebX" />
     </language>
     <language id="b574d547-b77e-4fed-9f60-c349c4410765" name="com.mbeddr.ext.math">
-      <concept id="666324024671982185" name="com.mbeddr.ext.math.structure.MathConfigurationItem" flags="ng" index="22RD12" />
       <concept id="5098456557381793727" name="com.mbeddr.ext.math.structure.FractionExpression" flags="ng" index="2zguM6">
         <child id="5098456557382006631" name="right" index="2zgELu" />
         <child id="5098456557382006592" name="left" index="2zgELT" />
@@ -374,7 +374,8 @@
       <property role="3r8Kxs" value="make" />
       <property role="3r8Kw1" value="gdb" />
       <property role="3I8uaA" value="" />
-      <property role="18_EFo" value="gcc" />
+      <property role="UXd52" value="g++" />
+      <property role="UXd4T" value="-std=c++11" />
     </node>
     <node concept="2eOfOl" id="6q20vztqmfr" role="2ePNbc">
       <property role="TrG5h" value="IntegratedCExample" />
@@ -393,7 +394,6 @@
         <property role="TrG5h" value="any" />
       </node>
     </node>
-    <node concept="22RD12" id="2dy2PMDOcDa" role="2Q9xDr" />
   </node>
   <node concept="N3F5e" id="7iLD7IPXjWJ">
     <property role="TrG5h" value="IntegratedCProgramSMAPDTM" />
