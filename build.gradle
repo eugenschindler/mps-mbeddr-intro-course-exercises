@@ -1,0 +1,133 @@
+//will pull the groovy classes/types from nexus to the classpath
+buildscript {
+    repositories {
+        maven { url 'https://artifacts.itemis.cloud/repository/maven-mps/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'de.itemis.mps:mps-gradle-plugin:1.11.+'
+    }
+}
+
+// ------------- DEPENDENCY VERSIONS ------------- 
+// Dependency versions
+ext.mpsVersion = '2022.2'
+ext.mbeddrVersion = '2022.2.+'
+// ------------- /DEPENDENCY VERSIONS -------------
+
+
+import de.itemis.mps.gradle.*
+apply plugin: 'base'
+
+
+// ------------- DEPENDENCY CONFIG -------------
+
+ext.dependencyRepositories = [
+        'https://artifacts.itemis.cloud/repository/maven-mps/'
+]
+
+repositories {
+    mavenCentral()
+    for (repoUrl in project.dependencyRepositories) {
+        maven {
+            url repoUrl
+        }
+    }
+}
+
+configurations {
+    mps
+    mpsArtifacts
+    junitAnt
+}
+
+dependencies {
+    mps "com.jetbrains:mps:$mpsVersion"
+    mpsArtifacts "com.mbeddr:mbeddr:$mbeddrVersion"
+    junitAnt 'org.apache.ant:ant-junit:1.10.11'
+}
+
+tasks.named('wrapper') {
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+// ------------- /DEPENDENCY CONFIG -------------
+
+
+// ------------- DEPENDENCY RESOLUTION -------------
+// JDK_HOME required for adding tools.jar into classpath of the forked ant process
+if (!hasProperty("jdk_home")) {
+    ext.jdk_home = System.properties['java.home']
+}
+
+task resolveMps(type: Copy) {
+    dependsOn configurations.mps
+    from {
+        configurations.mps.resolve().collect { zipTree(it) }
+    }
+    into "$buildDir/mps"
+}
+
+task resolveMpsArtifacts(type: Copy) {
+    from {
+        configurations.mpsArtifacts.resolve().collect { zipTree(it) }
+    }
+    into "$buildDir/artifacts"
+}
+
+// ------------- /DEPENDENCY RESOLUTION -------------
+
+
+// ------------- BUILD TASKS -------------
+task generateLibrariesXmlStep0(type: GenerateLibrariesXml) {
+    dependsOn resolveMpsArtifacts
+    description "Will read project libraries from projectlibraries.properties and generate libraries.xml in .mps directory. Libraries are loaded in mps during start."
+    defaults rootProject.file('projectlibraries.properties')
+    overrides rootProject.file('projectlibraries.overrides.properties')
+    destination file('Step0-CProgram/.mps/libraries.xml')
+}
+
+task generateLibrariesXmlStep1(type: GenerateLibrariesXml) {
+    dependsOn resolveMpsArtifacts
+    description "Will read project libraries from projectlibraries.properties and generate libraries.xml in .mps directory. Libraries are loaded in mps during start."
+    defaults rootProject.file('projectlibraries.properties')
+    overrides rootProject.file('projectlibraries.overrides.properties')
+    destination file('Step1-ExtractedStatemachine/.mps/libraries.xml')
+}
+
+task generateLibrariesXmlStep2(type: GenerateLibrariesXml) {
+    dependsOn resolveMpsArtifacts
+    description "Will read project libraries from projectlibraries.properties and generate libraries.xml in .mps directory. Libraries are loaded in mps during start."
+    defaults rootProject.file('projectlibraries.properties')
+    overrides rootProject.file('projectlibraries.overrides.properties')
+    destination file('Step2-ExtractedActivationPattern/.mps/libraries.xml')
+}
+
+task generateLibrariesXmlStep3(type: GenerateLibrariesXml) {
+    dependsOn resolveMpsArtifacts
+    description "Will read project libraries from projectlibraries.properties and generate libraries.xml in .mps directory. Libraries are loaded in mps during start."
+    defaults rootProject.file('projectlibraries.properties')
+    overrides rootProject.file('projectlibraries.overrides.properties')
+    destination file('Step3-DecisionTable/.mps/libraries.xml')
+}
+
+task generateLibrariesXmlStep4(type: GenerateLibrariesXml) {
+    dependsOn resolveMpsArtifacts
+    description "Will read project libraries from projectlibraries.properties and generate libraries.xml in .mps directory. Libraries are loaded in mps during start."
+    defaults rootProject.file('projectlibraries.properties')
+    overrides rootProject.file('projectlibraries.overrides.properties')
+    destination file('Step4-FullSolutionWithMathFormula/.mps/libraries.xml')
+}
+
+task setup {
+    dependsOn generateLibrariesXmlStep0
+    dependsOn generateLibrariesXmlStep1
+    dependsOn generateLibrariesXmlStep2
+    dependsOn generateLibrariesXmlStep3
+    dependsOn generateLibrariesXmlStep4
+    dependsOn resolveMpsArtifacts
+    description 'Set up MPS project libraries. Libraries are read in from projectlibraries.properties file.'
+}
+
+defaultTasks "setup"
+// ------------- /BUILD TASKS -------------
