@@ -1,7 +1,7 @@
 mps-mbeddr-intro-course-exercises
 =================================
 
-This set of projects will open in JetBrains MPS 2023.3.
+This set of projects will open in JetBrains MPS 2024.1.
 
 Exercises for DSL-ifying a C program with mbeddr, also adding a self-made language abstraction
 
