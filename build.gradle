@@ -11,8 +11,8 @@ buildscript {
 
 // ------------- DEPENDENCY VERSIONS ------------- 
 // Dependency versions
-ext.mpsVersion = '2025.3'
-ext.mbeddrVersion = '2025.1.+'
+ext.mpsVersion = '2026.1'
+ext.mbeddrVersion = '2026.1.+'
 // ------------- /DEPENDENCY VERSIONS -------------
 
 

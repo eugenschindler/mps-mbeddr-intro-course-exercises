@@ -48,4 +48,7 @@ Migrate all five with mps home (Ant java = mps/jbr JDK25). mops verify. Commit p
 - 2026-08-22: Step0 migrated 251->252 (models re-saved by assistant).
 - KEY FINDING: `mops make project` fails at com.mbeddr.core.make.RunMake.collectPaths for EVERY project — proven PRE-EXISTING (fails identically on untouched 251 baseline Step1). Cause: mbeddr RunMake facet needs an "allScripts" artifact (com.mbeddr.allScripts.build) that is NOT published on artifacts.itemis.cloud (mbeddr aggregate POM only bundles `platform`; probes for allScripts coords all 404). => NOT a migration failure; do NOT gate on it.
 - CORRECT VERIFICATION per USER RULE (2026-08-22): "Only the languages in the MPS projects should build." -> build languages/<module> via `mops make modules <Lang>` only. Solution modules (EmbeddedProgram) and C RunMake are OUT OF SCOPE (Step0's C RunMake fails on student code math_log2 — not a migration issue, ignore).
-- Step1/2/3/4 migration 251/241 -> 252 in progress.
+- Step1/2/3/4 migration 251/241 -> 252 done (commits 161ac62..8919b9b era).
+- 2026-08-22: STAGE 1 DONE (2025.2): all 5 at 252 (Step0/1 solution-only, Step2/3/4 languages build). archive/mps20252 = 4dc7685 (re-pointed + force-pushed, approved by user).
+- 2026-08-22: STAGE 2 DONE (2025.3): all 5 at 253 (commits 6e2c68c, 161ac62, 2c026a3, 75c7577, 3a2e889, 2640535). mbeddr stays 2025.1.+ (NO 2025.3 release on artifacts.itemis.cloud; mbeddr versions jump 2025.1 -> 2026.1). Language builds OK: Step2/3/4 `made 1 module(s): success`. archive/mps20253 = HEAD after this stage.
+- 2026-08-22: le-mps-course-materials embeds this repo as submodule langs/demo/mps-mbeddr-intro-course-exercises (currently 898149e on all branches + HEAD). MUST bump gitlink per stage after exercise-repo stages complete.
