@@ -56,7 +56,7 @@
       </concept>
     </language>
     <language id="a9d69647-0840-491e-bf39-2eb0805d2011" name="com.mbeddr.core.statements">
-      <concept id="7763322639126652757" name="com.mbeddr.core.statements.structure.ITypeContainingType" flags="ngI" index="2umbIr">
+      <concept id="7763322639126652757" name="com.mbeddr.core.statements.structure.ITypeContainingType" flags="ng" index="2umbIr">
         <child id="7763322639126652758" name="baseType" index="2umbIo" />
       </concept>
       <concept id="7254843406768833938" name="com.mbeddr.core.statements.structure.ExpressionStatement" flags="ng" index="1_9egQ">
@@ -113,14 +113,14 @@
       <concept id="8967919205527146149" name="com.mbeddr.core.modules.structure.ReturnStatement" flags="ng" index="2BFjQ_">
         <child id="8967919205527146150" name="expression" index="2BFjQA" />
       </concept>
-      <concept id="8105003328814797298" name="com.mbeddr.core.modules.structure.IFunctionLike" flags="ngI" index="2H9T1B">
+      <concept id="8105003328814797298" name="com.mbeddr.core.modules.structure.IFunctionLike" flags="ng" index="2H9T1B">
         <child id="5708867820623310661" name="arguments" index="1UOdpc" />
       </concept>
       <concept id="6437088627575722813" name="com.mbeddr.core.modules.structure.Module" flags="ng" index="N3F4X">
         <child id="6437088627575722833" name="contents" index="N3F5h" />
       </concept>
       <concept id="6437088627575722830" name="com.mbeddr.core.modules.structure.ImplementationModule" flags="ng" index="N3F5e" />
-      <concept id="6437088627575722831" name="com.mbeddr.core.modules.structure.IModuleContent" flags="ngI" index="N3F5f">
+      <concept id="6437088627575722831" name="com.mbeddr.core.modules.structure.IModuleContent" flags="ng" index="N3F5f">
         <property id="1317894735999272944" name="exported" index="2OOxQR" />
       </concept>
       <concept id="6437088627575724001" name="com.mbeddr.core.modules.structure.Function" flags="ng" index="N3Fnx">
@@ -205,7 +205,7 @@
       <concept id="2212975673976017893" name="com.mbeddr.core.expressions.structure.NumericLiteral" flags="ng" index="2hns93">
         <property id="2212975673976043696" name="value" index="2hmy$m" />
       </concept>
-      <concept id="318113533128716675" name="com.mbeddr.core.expressions.structure.ITyped" flags="ngI" index="2C2TGh">
+      <concept id="318113533128716675" name="com.mbeddr.core.expressions.structure.ITyped" flags="ng" index="2C2TGh">
         <child id="318113533128716676" name="type" index="2C2TGm" />
       </concept>
       <concept id="7892328519581699353" name="com.mbeddr.core.expressions.structure.VoidType" flags="ng" index="19Rifw" />
@@ -244,7 +244,7 @@
             <node concept="19RgSI" id="Ll6J3cq_uK" role="1UOdpc">
               <property role="TrG5h" value="p" />
               <node concept="1AkAi2" id="Ll6J3cq_uJ" role="2C2TGm">
-                <ref role="1AkAi1" node="Ll6J3cq$GH" resolve="devices" />
+                <ref role="1AkAi1" node="Ll6J3cq$GH" />
               </node>
             </node>
             <node concept="19Rifw" id="Ll6J3cq_tD" role="2C2TGm">
@@ -260,9 +260,9 @@
           </node>
           <node concept="1KQ5M7" id="Ll6J3cq$LM" role="N3F5h">
             <property role="TrG5h" value="test" />
-            <ref role="1KRRCB" node="Ll6J3cq$GH" resolve="devices" />
-            <ref role="32Irh3" node="Ll6J3cq_tC" resolve="enable" />
-            <ref role="32IuEd" node="Ll6J3cq_tC" resolve="enable" />
+            <ref role="1KRRCB" node="Ll6J3cq$GH" />
+            <ref role="32Irh3" node="Ll6J3cq_tC" />
+            <ref role="32IuEd" node="Ll6J3cq_tC" />
             <node concept="310vbG" id="Ll6J3cq$LZ" role="3113uG">
               <property role="31nlfr" value="profileName" />
               <node concept="31sF6E" id="Ll6J3cq$M0" role="31tcF7" />
@@ -273,7 +273,7 @@
           </node>
           <node concept="1LFe83" id="Ll6J3cq$v1" role="N3F5h">
             <property role="TrG5h" value="StateMachineContext" />
-            <ref role="1LFebw" node="Ll6J3cq$v6" resolve="baz" />
+            <ref role="1LFebw" node="Ll6J3cq$v6" />
             <node concept="2cfOFI" id="Ll6J3cq$Mf" role="1_Iowf">
               <property role="TrG5h" value="skip" />
             </node>
@@ -283,9 +283,9 @@
                 <node concept="2xGTIE" id="Ll6J3cq$vl" role="S7lxW">
                   <node concept="1_9egQ" id="Ll6J3cu7wN" role="3XIRFZ">
                     <node concept="3O_q_g" id="Ll6J3cu7wO" role="1_9egR">
-                      <ref role="3O_q_h" node="7iLD7IQ3AGL" resolve="activate" />
+                      <ref role="3O_q_h" node="7iLD7IQ3AGL" />
                       <node concept="1AkAhK" id="Ll6J3cu7wP" role="3O_q_j">
-                        <ref role="1AkAhZ" node="Ll6J3cq$GI" resolve="a" />
+                        <ref role="1AkAhZ" node="Ll6J3cq$GI" />
                         <node concept="1ZhdrF" id="Ll6J3cu7wQ" role="lGtFl">
                           <property role="2qtEX8" value="literal" />
                           <property role="P3scX" value="efda956e-491e-4f00-ba14-36af2f213ecf/8811614583515726007/8811614583515726008" />
@@ -433,7 +433,7 @@
             <node concept="19RgSI" id="7iLD7IQ3AIP" role="1UOdpc">
               <property role="TrG5h" value="b" />
               <node concept="1AkAi2" id="7iLD7IQ3AIO" role="2C2TGm">
-                <ref role="1AkAi1" node="7iLD7IQ3AHW" resolve="devices" />
+                <ref role="1AkAi1" node="7iLD7IQ3AHW" />
               </node>
             </node>
             <node concept="19Rifw" id="7iLD7IQ3AGM" role="2C2TGm">
@@ -451,9 +451,9 @@
             <node concept="3XIRFW" id="7iLD7IQ3B68" role="3XIRFX">
               <node concept="1_9egQ" id="7iLD7IQ3B74" role="3XIRFZ">
                 <node concept="3O_q_g" id="7iLD7IQ3B73" role="1_9egR">
-                  <ref role="3O_q_h" node="7iLD7IQ3AGL" resolve="activate" />
+                  <ref role="3O_q_h" node="7iLD7IQ3AGL" />
                   <node concept="1AkAhK" id="7iLD7IQ3B7k" role="3O_q_j">
-                    <ref role="1AkAhZ" node="7iLD7IQ3AHX" resolve="a" />
+                    <ref role="1AkAhZ" node="7iLD7IQ3AHX" />
                     <node concept="1ZhdrF" id="7iLD7IQ3UM8" role="lGtFl">
                       <property role="2qtEX8" value="literal" />
                       <property role="P3scX" value="efda956e-491e-4f00-ba14-36af2f213ecf/8811614583515726007/8811614583515726008" />
